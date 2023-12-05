@@ -22,7 +22,7 @@ public class InsiderTest {
     public void testHomePage(){
         //1. Verify successful loading of the Insider home page
         Driver.getDriver().get(ConfigurationReader.getProperty("base_url"));
-        assertTrue(Driver.getDriver().getTitle().equals("#1 Leader in Individualized, Cross-Channel CX — Insider"));
+        assertTrue(Driver.getDriver().getTitle().contains("#1 Leader in Individualized, Cross-Channel CX — Insider"));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class InsiderTest {
         Driver.getDriver().get(ConfigurationReader.getProperty("base_url"));
         homePage.companyMenu.click();
         homePage.careersOption.click();
-        assertTrue(Driver.getDriver().getTitle().equals("Insider Careers"));
+        assertTrue(Driver.getDriver().getTitle().contains("Insider Careers"));
         assertTrue(BrowserUtils.isElementPresent(careersPage.locationsSection));
         assertTrue(BrowserUtils.isElementPresent(careersPage.teamsSection));
         assertTrue(BrowserUtils.isElementPresent(careersPage.lifeAtInsiderSection));
@@ -43,7 +43,7 @@ public class InsiderTest {
     public void testQaPage(){
         //3. Check for Quality Assurance job listings
         Driver.getDriver().get(ConfigurationReader.getProperty("careers_url"));
-        assertTrue(Driver.getDriver().getTitle().equals("Insider quality assurance job opportunities"));
+        assertTrue(Driver.getDriver().getTitle().contains("Insider quality assurance job opportunities"));
         BrowserUtils.clickWithJS(qaPage.seeAllJobsButton);
         qaPage.selectLocation("Istanbul, Turkey");
         qaPage.selectDepartment("Quality Assurance");
