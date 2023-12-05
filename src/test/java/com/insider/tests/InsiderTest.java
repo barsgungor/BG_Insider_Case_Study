@@ -43,7 +43,7 @@ public class InsiderTest {
     public void testQaPage(){
         //3. Check for Quality Assurance job listings
         Driver.getDriver().get(ConfigurationReader.getProperty("careers_url"));
-        assertTrue(Driver.getDriver().getTitle().contains("Insider quality assurance job opportunities"),  "Failed to check for the title of QA job listings");
+        assertTrue(Driver.getDriver().getTitle().contains("Insider quality assurance job opportunities"),  "Failed to check for the title of the QA job listings page");
         BrowserUtils.clickWithJS(qaPage.seeAllJobsButton);
         qaPage.selectLocation("Istanbul, Turkey");
         qaPage.selectDepartment("Quality Assurance");
