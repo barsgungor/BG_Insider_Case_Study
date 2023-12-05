@@ -22,7 +22,7 @@ public class InsiderTest {
     public void testHomePage(){
         //1. Verify successful loading of the Insider home page
         Driver.getDriver().get(ConfigurationReader.getProperty("base_url"));
-        assertTrue(Driver.getDriver().getTitle().contains("#1 Leader in Individualized, Cross-Channel CX — Insider"));
+        assertTrue(Driver.getDriver().getTitle().contains("#1 Leader in Individualized, Cross-Channel CX — Insider"), "Failed to check for the title of the Insider home page");
     }
 
     @Test
@@ -32,10 +32,10 @@ public class InsiderTest {
         Driver.getDriver().get(ConfigurationReader.getProperty("base_url"));
         homePage.companyMenu.click();
         homePage.careersOption.click();
-        assertTrue(Driver.getDriver().getTitle().contains("Insider Careers"));
-        assertTrue(BrowserUtils.isElementPresent(careersPage.locationsSection));
-        assertTrue(BrowserUtils.isElementPresent(careersPage.teamsSection));
-        assertTrue(BrowserUtils.isElementPresent(careersPage.lifeAtInsiderSection));
+        assertTrue(Driver.getDriver().getTitle().contains("Insider Careers"), "Failed to check for the title of the Careers page");
+        assertTrue(BrowserUtils.isElementPresent(careersPage.locationsSection), "Locations section is not visible on the Careers page");
+        assertTrue(BrowserUtils.isElementPresent(careersPage.teamsSection), "Teams section is not visible on the Careers page");
+        assertTrue(BrowserUtils.isElementPresent(careersPage.lifeAtInsiderSection), "Life at Insider section is not visible on the Careers page");
     }
 
     @Test
@@ -43,17 +43,17 @@ public class InsiderTest {
     public void testQaPage(){
         //3. Check for Quality Assurance job listings
         Driver.getDriver().get(ConfigurationReader.getProperty("careers_url"));
-        assertTrue(Driver.getDriver().getTitle().contains("Insider quality assurance job opportunities"));
+        assertTrue(Driver.getDriver().getTitle().contains("Insider quality assurance job opportunities"),  "Failed to check for the title of QA job listings");
         BrowserUtils.clickWithJS(qaPage.seeAllJobsButton);
         qaPage.selectLocation("Istanbul, Turkey");
         qaPage.selectDepartment("Quality Assurance");
-        assertTrue(BrowserUtils.isElementPresent(qaPage.jobsList));
+        assertTrue(BrowserUtils.isElementPresent(qaPage.jobsList), "Quality Assurance job listings are not visible");
 
         //4. Ensure each job's Position, Department, and Location contain the expected values
-        assertTrue(qaPage.verifyAllJobsAttributes());
+        assertTrue(qaPage.verifyAllJobsAttributes(), "Failed to verify Quality Assurance job attributes");
 
         //5. Click the “View Role” button for a job and verify redirection to the Lever Application form page
-        assertTrue(qaPage.verifyViewRoleButtonRedirectsToFormPage());
+        assertTrue(qaPage.verifyViewRoleButtonRedirectsToFormPage(), "Failed to verify redirection to the Lever Application form page");
     }
 
     @AfterEach
